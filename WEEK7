@@ -1,0 +1,71 @@
+# Assignment 1: Superhero Class with Inheritance
+class Superhero:
+    def __init__(self, name, alias, powers, secret_identity):
+        self.name = name
+        self.alias = alias
+        self.powers = powers
+        self.__secret_identity = secret_identity  # Encapsulated attribute
+
+    def reveal_identity(self):
+        print(f"🦸 {self.name}'s secret identity is {self.__secret_identity}")
+
+    def use_power(self, power_index=0):
+        try:
+            print(f"💥 {self.name} uses {self.powers[power_index]}!")
+        except IndexError:
+            print("❌ Power not found")
+
+    def change_identity(self, new_identity):
+        self.__secret_identity = new_identity
+        print(f"🕶️  Identity changed to {new_identity}")
+
+class TechHero(Superhero):
+    def __init__(self, name, alias, powers, secret_identity, gadgets):
+        super().__init__(name, alias, powers, secret_identity)
+        self.gadgets = gadgets  # Additional attribute
+
+    # Polymorphism - overriding use_power method
+    def use_power(self, gadget_index=0):
+        try:
+            print(f"🔧 {self.name} uses {self.gadgets[gadget_index]}!")
+        except IndexError:
+            print("❌ Gadget not found")
+
+# Activity 2: Polymorphism Challenge
+class Vehicle:
+    def move(self):
+        pass
+
+class Car(Vehicle):
+    def move(self):
+        print("🚗 Driving on the road!")
+
+class Plane(Vehicle):
+    def move(self):
+        print("✈️ Flying through the sky!")
+
+class Boat(Vehicle):
+    def move(self):
+        print("⛵ Sailing across the water!")
+
+# Demonstration
+if __name__ == "__main__":
+    print("=== Superhero Demonstration ===")
+    superman = Superhero("Superman", "Clark Kent", 
+                        ["heat vision", "super strength"], 
+                        "Clark Kent")
+    iron_man = TechHero("Iron Man", "Tony Stark", 
+                        ["arc reactor energy"], 
+                        "Tony Stark", 
+                        ["repulsor beams", "jet thrusters"])
+
+    superman.reveal_identity()
+    superman.use_power(0)
+    
+    iron_man.change_identity("Anthony Stark")
+    iron_man.use_power()  # Uses gadget instead of power
+
+    print("\n=== Vehicle Polymorphism Demonstration ===")
+    vehicles = [Car(), Plane(), Boat()]
+    for vehicle in vehicles:
+        vehicle.move()
