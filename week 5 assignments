@@ -1,0 +1,67 @@
+ASSIGNMENT 1
+# Base class
+class Superhero:
+    def __init__(self, name, power, universe):
+        self.name = name
+        self.power = power
+        self.universe = universe
+    
+    def introduce(self):
+        print(f"I am {self.name} from {self.universe}, and my power is {self.power}!")
+
+# Subclass to demonstrate inheritance and encapsulation
+class Mutant(Superhero):
+    def __init__(self, name, power, universe, mutation_type):
+        super().__init__(name, power, universe)
+        self.__mutation_type = mutation_type  # Encapsulated attribute
+
+    def reveal_mutation(self):
+        print(f"My mutation type is {self.__mutation_type}.")
+
+# Creating objects
+hero1 = Superhero("Photon Girl", "Light Manipulation", "Marvel")
+hero2 = Mutant("Beast X", "Super Strength", "X-Men", "Animal DNA")
+
+# Using methods
+hero1.introduce()
+hero2.introduce()
+hero2.reveal_mutation()
+
+
+
+
+
+
+
+ASSIGNMENT 2
+# Base class
+class Vehicle:
+    def move(self):
+        print("This vehicle is moving")
+
+# Subclasses with polymorphic move() methods
+class Car(Vehicle):
+    def move(self):
+        print("Driving on the road 🚗")
+
+class Plane(Vehicle):
+    def move(self):
+        print("Flying in the sky ✈️")
+
+class Bicycle(Vehicle):
+    def move(self):
+        print("Pedaling down the path 🚲")
+
+# Function that demonstrates polymorphism
+def travel(vehicle):
+    vehicle.move()
+
+# Objects
+my_car = Car()
+my_plane = Plane()
+my_bike = Bicycle()
+
+# Testing polymorphism
+travel(my_car)
+travel(my_plane)
+travel(my_bike)
